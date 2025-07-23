@@ -86,20 +86,13 @@ Follow these steps to get the AI Flashcard Generator up and running on your loca
 5. **Review Flashcards:**
    * Click on any card to flip and reveal the answer.
 
-## 🧬 Technical Workflow (Workflow 2)
+## 🧬 Technical Workflow
 
 * **PDF Text Extraction:** Handled via PDF.js.
 * **Text Chunking:** Based on size limits and paragraph breaks.
 * **Prompting Gemini:** Sends each chunk with a structured prompt to `gemini-2.0-flash`, requesting 3–5 question-answer pairs in JSON.
 * **Flashcard Consolidation:** Results are merged and de-duplicated.
 * **Display:** Final flashcards are rendered for interactive review.
-
-## 🔮 Future Enhancement: Workflow 3 (Hard Difficulty)
-
-* **Vector Database Integration:** Embed and store document chunks.
-* **Contextual Retrieval:** Retrieve relevant chunks using vector similarity.
-* **RAG-based Prompting:** Use retrieved data and broader knowledge to generate more insightful questions.
-* **Better Q&A Quality:** Encourages deep understanding and application of ideas.
 
 ## 🤝 Contributing
 
@@ -123,11 +116,3 @@ We welcome contributions!
    ```bash
    git push origin feature/your-feature-name
    ```
-
-## 📄 License
-
-This project is licensed under the MIT License. See the `LICENSE` file for full details.
-
-## 📬 Contact
-
-For feedback or issues, please open an issue on the GitHub repository.
