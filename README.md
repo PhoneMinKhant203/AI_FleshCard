@@ -66,34 +66,6 @@ Follow these steps to get the AI Flashcard Generator up and running on your loca
 
 > ⚠️ Keep your API key secure. Do not share it or commit it to public code repositories.
 
-### 🌐 Running the Application
-
-To avoid browser security (CORS) issues, serve the app using a local web server.
-
-#### Option 1: Python HTTP Server
-
-```bash
-cd your_project_folder
-python -m http.server
-```
-
-Then open: `http://localhost:8000`
-
-#### Option 2: Node.js http-server
-
-1. Install http-server (if not installed):
-
-   ```bash
-   npm install -g http-server
-   ```
-
-2. Run the server:
-
-   ```bash
-   http-server
-   ```
-
-Then open the provided address (e.g., `http://127.0.0.1:8080`)
 
 ## 🧠 Usage
 
