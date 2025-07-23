@@ -43,8 +43,7 @@ Follow these steps to get the AI Flashcard Generator up and running on your loca
 1. **Clone the Repository:**
 
    ```bash
-   git clone <repository_url_here>
-   cd <your_project_folder_name>
+   git clone https://github.com/PhoneMinKhant203/AI_FleshCard.git
    ```
 
 2. **Project Structure:**
