@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Flashcard Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-start py-6">
+    <header class="w-full max-w-4xl px-4 mb-6">
+        <h1 class="text-4xl font-bold text-center text-primary-dark md:text-5xl">AI Flashcard Generator</h1>
+        <p class="text-center text-gray-600 mt-2">Create flashcards from text or PDFs with ease!</p>
+    </header>
+
+    <div class="container w-full max-w-4xl px-4">
+        <!-- API Key Setup Section -->
+        <div id="apiKeySetup" class="mb-8 p-6 bg-white rounded-xl shadow-lg transition-all duration-300">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800">Enter Your Gemini API Key</h2>
+            <div class="mb-4">
+                <label for="apiKeyInput" class="block text-gray-700 text-sm font-medium mb-2">Your Gemini API Key:</label>
+                <input type="password" id="apiKeyInput" placeholder="Enter your Gemini API Key" class="input-field p-3" aria-describedby="apiKeyHelp">
+                <p id="apiKeyHelp" class="text-xs text-gray-500 mt-2">Get your key from <a href="https://aistudio.google.com/app/apikey" target="_blank" class="text-blue-600 hover:underline">Google AI Studio</a>.</p>
+            </div>
+            <button id="submitApiKeyBtn" class="btn btn-primary w-full">Submit API Key</button>
+            <div id="apiKeyMessage" class="text-center text-error-color font-medium mt-4" role="alert"></div>
+        </div>
+
+        <!-- Main Application Content -->
+        <div id="mainAppContent" class="hidden">
+            <!-- Input Section -->
+            <div class="mb-8 p-6 bg-white rounded-xl shadow-lg transition-all duration-300">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800">Upload Document or Paste Text</h2>
+
+                <div class="mb-4">
+                    <label for="pdfUpload" class="block text-gray-700 text-sm font-medium mb-2">Upload PDF File:</label>
+                    <input type="file" id="pdfUpload" accept=".pdf" class="input-field p-3" aria-describedby="pdfUploadHelp">
+                    <p id="pdfUploadHelp" class="text-xs text-gray-500 mt-2">Upload a PDF to extract text for flashcard generation.</p>
+                </div>
+
+                <div class="mb-4">
+                    <label for="textInput" class="block text-gray-700 text-sm font-medium mb-2">Or Paste Text Here:</label>
+                    <textarea id="textInput" rows="8" placeholder="Paste your document text here..." class="input-field" aria-describedby="textInputHelp"></textarea>
+                    <p id="textInputHelp" class="text-xs text-gray-500 mt-2">Paste text directly to generate flashcards.</p>
+                </div>
+
+                <div class="mb-6">
+                    <label for="difficulty" class="block text-gray-700 text-sm font-medium mb-2">Select Difficulty:</label>
+                    <select id="difficulty" class="select-field" aria-describedby="difficultyHelp">
+                        <option value="easy">Easy</option>
+                        <option value="normal">Normal</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                    <p id="difficultyHelp" class="text-xs text-gray-500 mt-2">Choose the complexity of the flashcards.</p>
+                </div>
+
+                <button id="generateBtn" class="btn btn-primary w-full flex items-center justify-center gap-2" aria-label="Generate Flashcards">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                    Generate Flashcards
+                </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div id="progressBarContainer" class="hidden mb-4 w-full max-w-md mx-auto">
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div id="progressBar" class="bg-primary h-2.5 rounded-full" style="width: 0%"></div>
+                </div>
+                <p id="progressText" class="text-center text-sm text-gray-600 mt-2">Processing...</p>
+            </div>
+
+            <!-- Loading and Message Area -->
+            <div id="loadingIndicator" class="hidden loading-spinner"></div>
+            <div id="messageArea" class="text-center text-error-color font-medium mb-4" role="alert"></div>
+
+            <!-- Flashcards Display Area -->
+            <div id="flashcardsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Flashcards will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Modal for Messages -->
+    <div id="customModal" class="modal hidden" role="dialog" aria-labelledby="modalMessage">
+        <div class="modal-content">
+            <span class="close-button" role="button" aria-label="Close modal">&times;</span>
+            <p id="modalMessage" class="text-lg font-medium text-gray-800"></p>
+            <button id="modalCloseBtn" class="btn btn-primary mt-4">OK</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

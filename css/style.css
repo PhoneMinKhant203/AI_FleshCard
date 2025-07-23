@@ -1,0 +1,275 @@
+:root {
+    --color-primary: #B23100; /* Deep orange/red for buttons and key elements */
+    --color-accent: #d0a021; /* Goldenrod/ochre for highlights and focus states */
+    --color-white: #ffffff; /* White for backgrounds */
+    --color-light-gray: #f9fafb; /* Light gray for subtle backgrounds */
+    --color-dark-gray: #1f2937; /* Dark gray for text */
+    --color-medium-gray: #4b5563; /* Medium gray for secondary text */
+    --color-error: #dc2626; /* Red-600 for errors */
+    --color-success: #15803d; /* Green-700 for success messages */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-light-gray);
+    color: var(--color-dark-gray);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1024px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.text-primary-dark {
+    color: var(--color-primary);
+}
+
+.bg-accent-light {
+    background-color: #fff7ed; /* Light cream derived from accent for input sections */
+}
+
+.text-error-color {
+    color: var(--color-error);
+}
+
+.text-success-color {
+    color: var(--color-success);
+}
+
+.flashcard {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-accent);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transform-style: preserve-3d;
+    height: 200px;
+    width: 100%;
+    max-width: 400px; /* Ensure consistent width */
+    overflow: hidden;
+}
+
+.flashcard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.flashcard-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flashcard.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enable vertical scrolling for long content */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--color-accent) var(--color-white); /* Firefox */
+}
+
+.flashcard-front::-webkit-scrollbar,
+.flashcard-back::-webkit-scrollbar {
+    width: 6px; /* Thin scrollbar for WebKit browsers */
+}
+
+.flashcard-front::-webkit-scrollbar-track,
+.flashcard-back::-webkit-scrollbar-track {
+    background: var(--color-white);
+}
+
+.flashcard-front::-webkit-scrollbar-thumb,
+.flashcard-back::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 3px;
+}
+
+.flashcard-front {
+    background-color: var(--color-white);
+    color: var(--color-dark-gray);
+}
+
+.flashcard-back {
+    background-color: #fef2e8; /* Light peach derived from primary */
+    color: var(--color-dark-gray);
+    transform: rotateY(180deg);
+}
+
+.flashcard h3 {
+    font-weight: 600;
+    font-size: 1rem; /* Slightly smaller for better fit */
+    margin: 0;
+    color: var(--color-dark-gray);
+    word-wrap: break-word; /* Ensure long words wrap */
+    hyphens: auto; /* Add hyphenation for better wrapping */
+    line-height: 1.4;
+}
+
+.flashcard p {
+    font-size: 0.9rem; /* Slightly smaller for answers */
+    line-height: 1.4;
+    margin: 0;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background-color: #992a00; /* Slightly darker primary */
+    transform: translateY(-2px);
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(208, 160, 33, 0.3); /* Accent-derived focus ring */
+}
+
+.btn-primary:disabled {
+    background-color: #d1d5db;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-field:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(208, 160, 33, 0.2);
+}
+
+.select-field {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background-color: var(--color-white);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.select-field:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(208, 160, 33, 0.2);
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--color-primary);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    animation: spin 1s linear infinite;
+    margin: 1.5rem auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--color-white);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    max-width: 90%;
+    width: 500px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+.close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    font-size: 1.5rem;
+    color: #6b7280;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-button:hover {
+    color: var(--color-dark-gray);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .flashcard {
+        height: 180px;
+        max-width: 100%;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+    }
+}
